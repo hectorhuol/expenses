@@ -1,0 +1,136 @@
+package com.financial.analisys.expenses.gateways.mapimpl;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.financial.analisys.expenses.domain.Category;
+import com.financial.analisys.expenses.domain.Companion;
+import com.financial.analisys.expenses.domain.Expense;
+import com.financial.analisys.expenses.domain.User;
+import com.financial.analisys.expenses.gateways.ExpensesReportsGateway;
+import com.financial.analisys.expenses.utils.FinancialUtils;
+
+public class ExpensesReportsGatewayImpl implements ExpensesReportsGateway {
+
+	public List<Expense> getExpensesByCategoryByUser(Category category,
+			User user) {
+		List<Expense> values = new ArrayList<Expense>();
+
+		for (Expense expense : getValuesList()) {
+			if (isCategoryEqual(category, expense)
+					&& isUserEqual(user, expense))
+				values.add(expense);
+		}
+
+		return values;
+	}
+
+	private boolean isCategoryEqual(Category category, Expense expense) {
+		return expense.getCategory().equals(category);
+	}
+
+	public List<Expense> getExpensesByCityByUser(String cityName, User user) {
+		List<Expense> values = new ArrayList<Expense>();
+
+		for (Expense expense : getValuesList()) {
+			if (isCityEqual(cityName, expense) && isUserEqual(user, expense))
+				values.add(expense);
+		}
+
+		return values;
+	}
+
+	private boolean isCityEqual(String cityName, Expense expense) {
+		return expense.getCity().equals(cityName);
+	}
+
+	public List<Expense> getExpensesByCompanionsByUser(
+			List<Companion> companions, User user) {
+		List<Expense> values = new ArrayList<Expense>();
+
+		for (Expense expense : getValuesList()) {
+			if (hasSomeCompanion(expense.getCompanions(), companions)
+					&& isUserEqual(user, expense))
+				values.add(expense);
+		}
+
+		return values;
+	}
+
+	private boolean hasSomeCompanion(List<Companion> expenseCompanions,
+			List<Companion> companions) {
+		for (Companion companion : expenseCompanions)
+			if (companions.contains(companion))
+				return true;
+		return false;
+	}
+
+	public List<Expense> getExpensesByMonthByUser(LocalDate month, User user) {
+		List<Expense> values = new ArrayList<Expense>();
+
+		for (Expense expense : getValuesList()) {
+			if (isMonthEqual(month, expense) && isUserEqual(user, expense))
+				values.add(expense);
+		}
+
+		return values;
+	}
+
+	private boolean isMonthEqual(LocalDate month, Expense expense) {
+		return FinancialUtils.getLocalDateTime(expense.getDateAndHour())
+				.getMonth().equals(month.getMonth());
+	}
+
+	public List<Expense> getExpensesByDayByUser(LocalDate day, User user) {
+		List<Expense> values = new ArrayList<Expense>();
+
+		for (Expense expense : getValuesList()) {
+			if (isDayEqual(day, expense) && isUserEqual(user, expense))
+				values.add(expense);
+		}
+
+		return values;
+	}
+
+	private boolean isDayEqual(LocalDate day, Expense expense) {
+		return FinancialUtils.getLocalDateTime(expense.getDateAndHour())
+				.toLocalDate().isEqual(day);
+	}
+
+	public List<Expense> getExpensesBetweenDatesByUser(LocalDateTime startDate,
+			LocalDateTime finishDate, User user) {
+		List<Expense> values = new ArrayList<Expense>();
+
+		for (Expense expense : getValuesList()) {
+			if (isDateBetweenStartAndFinishDates(startDate, finishDate, expense)
+					&& isUserEqual(user, expense))
+				values.add(expense);
+		}
+
+		return values;
+	}
+
+	private boolean isDateBetweenStartAndFinishDates(LocalDateTime startDate,
+			LocalDateTime finishDate, Expense expense) {
+		return FinancialUtils.getLocalDateTime(expense.getDateAndHour())
+				.toLocalDate().isAfter(startDate.toLocalDate())
+				&& FinancialUtils.getLocalDateTime(expense.getDateAndHour())
+						.toLocalDate().isBefore(finishDate.toLocalDate())
+				|| FinancialUtils.getLocalDateTime(expense.getDateAndHour())
+						.toLocalDate().isEqual(startDate.toLocalDate())
+				|| FinancialUtils.getLocalDateTime(expense.getDateAndHour())
+						.toLocalDate().isEqual(finishDate.toLocalDate());
+	}
+
+	private List<Expense> getValuesList() {
+		List<Expense> values = new ArrayList<Expense>(
+				Repository.expensesRepository.values());
+		return values;
+	}
+
+	private boolean isUserEqual(User user, Expense expense) {
+		return expense.getUser().equals(user);
+	}
+}
