@@ -25,6 +25,10 @@ var ExpensesComponent = (function () {
         this.cardService = cardService;
         this.categoryService = categoryService;
     }
+    ExpensesComponent.prototype.getExpenses = function () {
+        var _this = this;
+        this.expenseService.getExpenses().then(function (expenses) { return _this.expenses = expenses; });
+    };
     ExpensesComponent.prototype.getCards = function () {
         var _this = this;
         this.cardService.getCards().then(function (cards) { return _this.cards = cards; });
@@ -45,6 +49,7 @@ var ExpensesComponent = (function () {
     };
     ExpensesComponent.prototype.ngOnInit = function () {
         this.expense = new expense_1.Expense();
+        this.getExpenses();
         this.getCards();
         this.getCategories();
         this.getDefaultUser();

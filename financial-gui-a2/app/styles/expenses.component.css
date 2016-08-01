@@ -8,6 +8,52 @@
   margin: 10px 2px;
 }
 
+.table {
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: column nowrap;
+  align-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.table label{
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+  color: #369;
+  font-size: 150%;
+  padding: 20px 0px;
+}
+
+.table table{
+  vertical-align: middle;
+  border-radius: 4px;
+  font-size: 150%;
+}
+
+.table th{
+  padding: 10px 10px;
+  background-color: #369;
+  color: #fff;
+}
+
+.table-index{
+  padding: 10px 10px;
+  background-color: #369;
+  color: #fff;
+  font-weight: bold;
+}
+
+.table-item {
+  padding: 10px 10px;
+  padding-right: 10px;
+  background-color: #eee;
+  color: #444;
+  text-align: center;
+  vertical-align: middle;
+}
+
 .grid {
   display: -webkit-flex;
   display: flex;
@@ -80,11 +126,14 @@ a.active {
   color: #039be5;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .container {
     font-size: 50%;
   }
   .input {
     font-size: 80%;
+  }
+  .table {
+    font-size: 50%;
   }
 }

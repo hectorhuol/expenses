@@ -21,6 +21,7 @@ export class ExpensesComponent implements OnInit {
   user: User;
   cards:Card[];
   categories:Category[];
+  expenses:Expense[];
   @Input() selectedCard: Card;
   @Input() selectedCategory: Category;
   error: any;
@@ -30,6 +31,10 @@ export class ExpensesComponent implements OnInit {
     private expenseService: ExpenseService,
     private cardService: CardService,
     private categoryService: CategoryService) { }
+
+  getExpenses() {
+    this.expenseService.getExpenses().then(expenses => this.expenses = expenses);
+  }
 
   getCards() {
     this.cardService.getCards().then(cards => this.cards = cards);
@@ -49,6 +54,7 @@ export class ExpensesComponent implements OnInit {
 
   ngOnInit() {
     this.expense = new Expense();
+    this.getExpenses();
     this.getCards();
     this.getCategories();
     this.getDefaultUser();

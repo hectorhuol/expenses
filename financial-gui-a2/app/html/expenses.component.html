@@ -31,4 +31,25 @@
   </div>
   <div class="error" *ngIf="error">{{error}}</div>
   <button (click)="saveExpense()">ADD EXPENSE</button>
+  <div class="table">
+    <label>Last Expenses</label>
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Value</th>
+          <th>Date</th>
+          <th>Card</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let exp of expenses">
+          <td class="table-index">{{exp.expenseId}}</td>
+          <td class="table-item">{{exp.value}}</td>
+          <td class="table-item">{{exp.dateAndHour}}</td>
+          <td class="table-item">{{exp.card.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
