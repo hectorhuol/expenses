@@ -126,14 +126,14 @@ a.active {
   color: #039be5;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .container {
-    font-size: 50%;
+    font-size: 80%;
   }
   .input {
     font-size: 80%;
   }
   .table {
-    font-size: 50%;
+    font-size: 80%;
   }
 }
