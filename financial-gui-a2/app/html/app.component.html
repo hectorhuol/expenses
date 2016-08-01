@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>{{title}}</h1>
+  <nav class="navigator">
+      <a [routerLink]="['/expenses']" routerLinkActive="active">Expenses</a>
+      <a [routerLink]="['/cards']" routerLinkActive="active">Cards</a>
+      <a [routerLink]="['/categories']" routerLinkActive="active">Categories</a>
+  </nav>
+</div>
+<router-outlet></router-outlet>

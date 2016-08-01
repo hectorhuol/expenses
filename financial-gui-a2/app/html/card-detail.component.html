@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="input">
+    <label>Name: </label>
+    <input [(ngModel)]="card.name" placeholder="Enter name"/>
+  </div>
+  <div class="grid">
+    <div *ngFor="let type of types"
+      [class.selected]="type === selectedType"
+      [class.item]="type !== selectedType"
+      (click)="onSelectCardType(type)">
+      <span>{{type}}</span>
+    </div>
+  </div>
+  <button (click)="save()">ADD CARD</button>
+  <div class="table">
+    <label>List of Cards</label>
+    <div *ngFor="let cd of cards" class="table-item">
+      <span class="table-index">{{cd.cardId}}</span>
+      <span>{{cd.name}}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="input">
+    <label>Name: </label>
+    <input [(ngModel)]="category.name" placeholder="Enter name"/>
+  </div>
+  <button (click)="save()">ADD CATEGORY</button>
+  <div class="table">
+    <label>List of Categories</label>
+    <div *ngFor="let cat of categories" class="table-item">
+      <span class="table-index">{{cat.categoryId}}</span>
+      <span>{{cat.name}}</span>
+    </div>
+  </div>
+</div>

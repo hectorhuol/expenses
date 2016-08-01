@@ -1,0 +1,78 @@
+.container {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction:column;
+}
+
+.container div {
+  margin: 10px 2px;
+}
+
+.table {
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: column; nowrap;
+  align-content: space-around;
+  align-items: stretch;
+  padding-top: 10px;
+}
+
+.table div {
+  vertical-align: middle;
+  border-radius: 4px;
+}
+
+.table label{
+  text-align: center;
+  vertical-align: middle;
+  font-size: 150%;
+  font-weight: bold;
+  color: #369;
+}
+
+.table-index{
+  padding: 10px 10px;
+  background-color: #369;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.table-item{
+  padding: 10px 0px;
+  padding-right: 10px;
+  background-color: #eee;
+  color: #444;
+  border-radius: 4px;
+}
+
+.input input {
+  font-size: 250%;
+  border: none;
+  font-weight: bold;
+  color:#369;
+}
+
+.input label {
+  font-size: 150%;
+  border: none;
+  font-weight: bold;
+  color:#888;
+}
+
+button{
+  margin-top: 10px;
+  padding: 10px 10px;
+  background-color:#369;
+  color: white;
+  border:none;
+  font-size: 100%
+}
+
+@media (max-width: 400px) {
+  .container {
+    font-size: 50%;
+  }
+  .input {
+    font-size: 80%;
+  }
+}

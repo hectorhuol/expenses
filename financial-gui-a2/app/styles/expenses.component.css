@@ -1,0 +1,90 @@
+.container {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction:column;
+}
+
+.container div {
+  margin: 10px 2px;
+}
+
+.grid {
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: space-around;
+}
+
+.grid div {
+  padding: 10px 10px;
+  flex: 1 0 100px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 4px;
+}
+
+.item{
+  color: #fff;
+  background-color: #369;
+}
+
+.selected {
+  background-color: #CFD8DC;
+  color: #039be5;
+}
+
+.input input {
+  font-size: 250%;
+  border: none;
+  font-weight: bold;
+  color:red;
+}
+
+.input label {
+  font-size: 150%;
+  border: none;
+  font-weight: bold;
+  color:#888;
+}
+
+button{
+  margin-top: 10px;
+  padding: 10px 10px;
+  background-color:#369;
+  color: white;
+  border:none;
+  font-size: 100%
+}
+
+a{
+  padding: 5px 10px;
+  text-decoration: none;
+  margin: 10px 10px;
+  background-color: #eee;
+  border-radius: 4px;
+  font-size: 150%;
+}
+
+a:visited, a:link {
+  color: #607D8B;
+}
+
+a:hover {
+  color: #039be5;
+  background-color: #CFD8DC;
+}
+
+a.active {
+  color: #039be5;
+}
+
+@media (max-width: 400px) {
+  .container {
+    font-size: 50%;
+  }
+  .input {
+    font-size: 80%;
+  }
+}

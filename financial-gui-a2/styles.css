@@ -1,0 +1,23 @@
+/* Master Styles */
+*:focus{
+  outline: none;
+}
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+h2, h3 {
+  color: #444;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  margin: 2em;
+}
+body, input[text], button {
+  font-family: Arial, Helvetica, sans-serif;
+}
+a {
+  cursor: pointer;
+  cursor: hand;
+}
