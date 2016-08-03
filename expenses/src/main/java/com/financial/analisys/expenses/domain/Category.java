@@ -1,5 +1,8 @@
 package com.financial.analisys.expenses.domain;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public class Category {
 
 	private String categoryId;
@@ -25,13 +28,16 @@ public class Category {
 	public boolean equals(Object obj) {
 		if (obj instanceof Category) {
 			Category category = (Category) obj;
-			return category.getCategoryId().equals(this.getCategoryId());
+			return new EqualsBuilder()
+					.append(this.categoryId, category.categoryId)
+					.append(this.name, category.name).isEquals();
 		}
 		return false;
 	}
 
 	@Override
 	public int hashCode() {
-		return Integer.valueOf(this.getCategoryId()) * 17;
+		return new HashCodeBuilder().append(categoryId).append(name)
+				.toHashCode();
 	}
 }

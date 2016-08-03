@@ -1,5 +1,8 @@
 package com.financial.analisys.expenses.domain;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public class Companion {
 
 	private String companionId;
@@ -34,13 +37,17 @@ public class Companion {
 	public boolean equals(Object obj) {
 		if (obj instanceof Companion) {
 			Companion companion = (Companion) obj;
-			return companion.getCompanionId().equals(this.getCompanionId());
+			return new EqualsBuilder()
+					.append(this.companionId, companion.companionId)
+					.append(this.name, companion.name)
+					.append(this.alias, companion.alias).isEquals();
 		}
 		return false;
 	}
 
 	@Override
 	public int hashCode() {
-		return Integer.valueOf(this.getCompanionId()) * 17;
+		return new HashCodeBuilder().append(companionId).append(name)
+				.append(alias).toHashCode();
 	}
 }

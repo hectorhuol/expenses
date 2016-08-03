@@ -1,5 +1,8 @@
 package com.financial.analisys.expenses.domain;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public class Card {
 
 	private String cardId;
@@ -34,13 +37,16 @@ public class Card {
 	public boolean equals(Object obj) {
 		if (obj instanceof Card) {
 			Card card = (Card) obj;
-			return card.getCardId().equals(this.getCardId());
+			return new EqualsBuilder().append(this.cardId, card.cardId)
+					.append(this.name, card.name)
+					.append(this.type.name(), card.type.name()).isEquals();
 		}
 		return false;
 	}
 
 	@Override
 	public int hashCode() {
-		return Integer.valueOf(this.getCardId()) * 17;
+		return new HashCodeBuilder().append(cardId).append(name)
+				.append(type.name()).toHashCode();
 	}
 }

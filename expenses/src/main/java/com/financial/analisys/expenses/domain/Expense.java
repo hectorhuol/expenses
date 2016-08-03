@@ -3,6 +3,9 @@ package com.financial.analisys.expenses.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public class Expense {
 
 	private String expenseId;
@@ -95,13 +98,23 @@ public class Expense {
 	public boolean equals(Object obj) {
 		if (obj instanceof Expense) {
 			Expense expense = (Expense) obj;
-			return expense.getExpenseId().equals(this.getExpenseId());
+			return new EqualsBuilder()
+					.append(this.expenseId, expense.expenseId)
+					.append(this.value, expense.value)
+					.append(this.dateAndHour, expense.dateAndHour)
+					.append(this.city, expense.city)
+					.append(this.location, expense.location)
+					.append(this.card, expense.card)
+					.append(this.category, expense.category)
+					.append(this.user, expense.user).isEquals();
 		}
 		return false;
 	}
 
 	@Override
 	public int hashCode() {
-		return Integer.valueOf(this.getExpenseId()) * 17;
+		return new HashCodeBuilder().append(expenseId).append(value)
+				.append(dateAndHour).append(city).append(location).append(card)
+				.append(category).toHashCode();
 	}
 }
