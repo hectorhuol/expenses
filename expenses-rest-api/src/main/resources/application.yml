@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      host: dockerhost
+      username: user
+      password: password
+      database: expenses
+      port: 27017
