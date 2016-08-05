@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @XmlRootElement(name = "expense")
@@ -18,9 +19,13 @@ public class ExpenseBO {
 	private String expenseId;
 	private Double value;
 	private String dateAndHour;
+	@DBRef
 	private List<CompanionBO> companions;
+	@DBRef
 	private CardBO card;
+	@DBRef
 	private CategoryBO category;
+	@DBRef
 	private UserBO user;
 	private String location;
 	private String city;

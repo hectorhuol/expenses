@@ -67,8 +67,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserBO> getAllUsers() {
 		try {
-			List<User> user = expensesAPIFacade.getUsersManager().getAllUsers();
-			return BOUtils.transformObjectList(user, UserBO.class);
+			List<User> users = expensesAPIFacade.getUsersManager().getAllUsers();
+			return BOUtils.transformObjectList(users, UserBO.class);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

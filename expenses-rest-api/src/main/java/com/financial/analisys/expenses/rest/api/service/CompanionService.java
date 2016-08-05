@@ -2,18 +2,18 @@ package com.financial.analisys.expenses.rest.api.service;
 
 import java.util.List;
 
-import com.financial.analisys.expenses.domain.Companion;
+import com.financial.analisys.expenses.rest.api.domain.CompanionBO;
 
 public interface CompanionService {
 
-	public Companion createCompanion(Companion companion);
+	CompanionBO createCompanion(CompanionBO companionBO);
 
-	public void updateCompanion(Companion companion);
+	void updateCompanion(CompanionBO companionBO);
 
-	public void deleteCompanion(Companion companion);
+	void deleteCompanion(String id);
 
-	public Companion getCompanion(Companion companion);
+	CompanionBO getCompanion(String id);
 
-	public List<Companion> getAllCompanions();
+	List<CompanionBO> getAllCompanions();
 
 }

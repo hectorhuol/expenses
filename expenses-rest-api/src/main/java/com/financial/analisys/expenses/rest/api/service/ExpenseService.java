@@ -1,41 +1,33 @@
 package com.financial.analisys.expenses.rest.api.service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
-import com.financial.analisys.expenses.domain.Category;
-import com.financial.analisys.expenses.domain.Companion;
-import com.financial.analisys.expenses.domain.Expense;
-import com.financial.analisys.expenses.domain.User;
+import com.financial.analisys.expenses.rest.api.domain.ExpenseBO;
 
 public interface ExpenseService {
 
-	Expense createExpense(Expense expense);
+	ExpenseBO createExpense(ExpenseBO expenseBO);
 
-	void updateExpense(Expense expense);
+	void updateExpense(ExpenseBO expenseBO);
 
-	void deleteExpense(Expense expense);
+	void deleteExpense(String id);
 
-	Expense getExpense(Expense expense);
+	ExpenseBO getExpense(String id);
 
-	List<Expense> getAllUsersExpenses(User user);
-	
-	List<Expense> getExpensesByCategoryByUser(Category category,
-			User user);
+	List<ExpenseBO> getAllUserExpenses(String userId);
 
-	List<Expense> getExpensesByCityByUser(String cityName,
-			User user);
+	List<ExpenseBO> getExpensesByCategoryByUser(String categoryId, String userId);
 
-	List<Expense> getExpensesByCompanionsByUser(
-			List<Companion> companions, User user);
+	List<ExpenseBO> getExpensesByCityByUser(String cityName, String userId);
 
-	List<Expense> getExpensesByMonthByUser(LocalDate month,
-			User user);
+	List<ExpenseBO> getExpensesByCompanionsByUser(List<String> companionsIds,
+			String userId);
 
-	List<Expense> getExpensesByDayByUser(LocalDate day, User user);
+	List<ExpenseBO> getExpensesByMonthByUser(String month, String userId);
 
-	List<Expense> getExpensesBetweenDatesByUser(LocalDateTime startDate,
-			LocalDateTime finishDate, User user);
+	List<ExpenseBO> getExpensesByDayByUser(String day, String userId);
+
+	List<ExpenseBO> getExpensesBetweenDatesByUser(String startDate,
+			String finishDate, String userId);
 
 }

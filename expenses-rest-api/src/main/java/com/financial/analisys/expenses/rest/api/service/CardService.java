@@ -2,18 +2,18 @@ package com.financial.analisys.expenses.rest.api.service;
 
 import java.util.List;
 
-import com.financial.analisys.expenses.domain.Card;
+import com.financial.analisys.expenses.rest.api.domain.CardBO;
 
 public interface CardService {
 
-	public Card createCard(Card card);
+	CardBO createCard(CardBO cardBO);
 
-	public void updateCard(Card card);
+	void updateCard(CardBO cardBO);
 
-	public void deleteCard(Card card);
+	void deleteCard(String id);
 
-	public Card getCard(Card card);
+	CardBO getCard(String id);
 
-	public List<Card> getAllCards();
+	List<CardBO> getAllCards();
 
 }

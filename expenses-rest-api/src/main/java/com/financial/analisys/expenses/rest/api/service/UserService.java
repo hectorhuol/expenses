@@ -6,9 +6,9 @@ import com.financial.analisys.expenses.rest.api.domain.UserBO;
 
 public interface UserService {
 
-	UserBO createUser(UserBO user);
+	UserBO createUser(UserBO userBO);
 
-	void updateUser(UserBO user);
+	void updateUser(UserBO userBO);
 
 	void deleteUser(String id);
 

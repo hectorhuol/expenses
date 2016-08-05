@@ -74,7 +74,7 @@ public class ExpenseTest {
 
 		when(expensesGateway.createExpense(expense)).thenReturn(expense);
 		when(expensesGateway.getExpense(expense)).thenReturn(expense);
-		when(expensesGateway.getAllUsersExpenses(user)).thenReturn(expenses);
+		when(expensesGateway.getAllUserExpenses(user)).thenReturn(expenses);
 		when(expensesValidator.validate(expense, ValidationType.CREATE))
 				.thenReturn(validationResult);
 		when(expensesValidator.validate(expense, ValidationType.READ))
@@ -144,7 +144,7 @@ public class ExpenseTest {
 		assertEquals(expense.getLocation(), queriedExpense.getLocation());
 		assertEquals(expense.getCity(), queriedExpense.getCity());
 		assertEquals(expense, queriedExpense);
-		verify(expensesGateway, times(2)).getAllUsersExpenses(user);
+		verify(expensesGateway, times(2)).getAllUserExpenses(user);
 	}
 
 }

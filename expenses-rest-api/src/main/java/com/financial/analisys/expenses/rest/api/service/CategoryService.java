@@ -2,18 +2,18 @@ package com.financial.analisys.expenses.rest.api.service;
 
 import java.util.List;
 
-import com.financial.analisys.expenses.domain.Category;
+import com.financial.analisys.expenses.rest.api.domain.CategoryBO;
 
 public interface CategoryService {
 
-	public Category createCategory(Category category);
+	CategoryBO createCategory(CategoryBO categoryBO);
 
-	public void updateCategory(Category category);
+	void updateCategory(CategoryBO categoryBO);
 
-	public void deleteCategory(Category category);
+	void deleteCategory(String id);
 
-	public Category getCategory(Category category);
+	CategoryBO getCategory(String id);
 
-	public List<Category> getAllCategories();
+	List<CategoryBO> getAllCategories();
 
 }

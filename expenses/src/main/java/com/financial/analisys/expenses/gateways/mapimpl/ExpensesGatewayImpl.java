@@ -41,7 +41,7 @@ public class ExpensesGatewayImpl implements ExpensesGateway {
 
 	}
 
-	public List<Expense> getAllUsersExpenses(User user) {
+	public List<Expense> getAllUserExpenses(User user) {
 		List<Expense> values = new ArrayList<Expense>();
 
 		for (Expense expense : getValuesList()) {

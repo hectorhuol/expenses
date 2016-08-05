@@ -92,7 +92,7 @@ public class ExpensesManager {
 	}
 
 	public List<Expense> getAllUserExpenses(User user) {
-		return expensesGateway.getAllUsersExpenses(user);
+		return expensesGateway.getAllUserExpenses(user);
 	}
 
 	public List<Expense> getExpensesByCategoryByUser(Category category,
