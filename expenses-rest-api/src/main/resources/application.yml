@@ -6,3 +6,6 @@ spring:
       password: password
       database: expenses
       port: 27017
+server:
+  context-path: /accounts
+  port: 8080
