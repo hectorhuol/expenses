@@ -9,7 +9,7 @@ import com.financial.analisys.expenses.domain.Category;
 import com.financial.analisys.expenses.domain.Companion;
 import com.financial.analisys.expenses.domain.Expense;
 import com.financial.analisys.expenses.domain.User;
-import com.financial.analisys.expenses.exceptions.ExpenseException;
+import com.financial.analisys.expenses.exceptions.TechnicalException;
 import com.financial.analisys.expenses.gateways.ExpensesReportsGateway;
 import com.financial.analisys.expenses.rest.api.domain.CategoryBO;
 import com.financial.analisys.expenses.rest.api.domain.CompanionBO;
@@ -39,7 +39,7 @@ public class RestAPIReportsExpensesGatewayImpl implements
 					userBO, categoryBO);
 			return BOUtils.transformObjectList(list, Expense.class);
 		} catch (Exception e) {
-			throw new ExpenseException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -51,7 +51,7 @@ public class RestAPIReportsExpensesGatewayImpl implements
 					cityName);
 			return BOUtils.transformObjectList(list, Expense.class);
 		} catch (Exception e) {
-			throw new ExpenseException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -63,7 +63,7 @@ public class RestAPIReportsExpensesGatewayImpl implements
 			list = findByCompanions(companions, list);
 			return BOUtils.transformObjectList(list, Expense.class);
 		} catch (Exception e) {
-			throw new ExpenseException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -95,7 +95,7 @@ public class RestAPIReportsExpensesGatewayImpl implements
 			list = findByMonth(month, list);
 			return BOUtils.transformObjectList(list, Expense.class);
 		} catch (Exception e) {
-			throw new ExpenseException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -120,7 +120,7 @@ public class RestAPIReportsExpensesGatewayImpl implements
 			list = findByDay(day, list);
 			return BOUtils.transformObjectList(list, Expense.class);
 		} catch (Exception e) {
-			throw new ExpenseException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -146,7 +146,7 @@ public class RestAPIReportsExpensesGatewayImpl implements
 			list = findBetweenDates(startDate, finishDate, list);
 			return BOUtils.transformObjectList(list, Expense.class);
 		} catch (Exception e) {
-			throw new ExpenseException(e);
+			throw new TechnicalException(e);
 		}
 	}
 

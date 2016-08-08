@@ -14,6 +14,7 @@ import com.financial.analisys.expenses.domain.Category;
 import com.financial.analisys.expenses.domain.Companion;
 import com.financial.analisys.expenses.domain.Expense;
 import com.financial.analisys.expenses.domain.User;
+import com.financial.analisys.expenses.exceptions.TechnicalException;
 
 public final class Repository {
 
@@ -208,7 +209,7 @@ public final class Repository {
 			mapper.writeValue(getFileDirectory(CARDS_REPOSITORY_NAME),
 					cardsRepository);
 		} catch (Exception e) {
-			throw new RuntimeException(
+			throw new TechnicalException(
 					"There is an isusse, the cards repository could not be saved",
 					e);
 		}
@@ -234,7 +235,7 @@ public final class Repository {
 			mapper.writeValue(getFileDirectory(COMPANIONS_REPOSITORY_NAME),
 					companionsRepository);
 		} catch (Exception e) {
-			throw new RuntimeException(
+			throw new TechnicalException(
 					"There is an isusse, the companions repository could not be saved",
 					e);
 		}
@@ -247,7 +248,7 @@ public final class Repository {
 			mapper.writeValue(getFileDirectory(EXPENSES_REPOSITORY_NAME),
 					expensesRepository);
 		} catch (Exception e) {
-			throw new RuntimeException(
+			throw new TechnicalException(
 					"There is an isusse, the expenses repository could not be saved",
 					e);
 		}
@@ -260,7 +261,7 @@ public final class Repository {
 			mapper.writeValue(getFileDirectory(USERS_REPOSITORY_NAME),
 					usersRepository);
 		} catch (Exception e) {
-			throw new RuntimeException(
+			throw new TechnicalException(
 					"There is an isusse, the users repository could not be saved",
 					e);
 		}

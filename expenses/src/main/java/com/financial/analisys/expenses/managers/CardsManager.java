@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.financial.analisys.expenses.domain.Card;
 import com.financial.analisys.expenses.exceptions.CardException;
+import com.financial.analisys.expenses.exceptions.TechnicalException;
 import com.financial.analisys.expenses.gateways.CardsGateway;
 import com.financial.analisys.expenses.validators.CardsValidator;
 import com.financial.analisys.expenses.validators.ValidationResult;
@@ -36,7 +37,7 @@ public class CardsManager {
 				return cardsGateway.createCard(card);
 			throw new CardException(result.getReason());
 		} catch (Exception e) {
-			throw new CardException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -49,7 +50,7 @@ public class CardsManager {
 			else
 				throw new CardException(result.getReason());
 		} catch (Exception e) {
-			throw new CardException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -62,7 +63,7 @@ public class CardsManager {
 			else
 				throw new CardException(result.getReason());
 		} catch (Exception e) {
-			throw new CardException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -72,7 +73,7 @@ public class CardsManager {
 					ValidationType.READ);
 			if (result.isValid())
 				return cardsGateway.getCard(card);
-			throw new CardException(result.getReason());
+			throw new TechnicalException(result.getReason());
 		} catch (Exception e) {
 			throw new CardException(e);
 		}

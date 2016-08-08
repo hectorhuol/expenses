@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.financial.analisys.expenses.domain.Category;
 import com.financial.analisys.expenses.exceptions.CategoryException;
+import com.financial.analisys.expenses.exceptions.TechnicalException;
 import com.financial.analisys.expenses.gateways.CategoriesGateway;
 import com.financial.analisys.expenses.validators.CategoriesValidator;
 import com.financial.analisys.expenses.validators.ValidationResult;
@@ -37,7 +38,7 @@ public class CategoriesManager {
 				return categoriesGateway.createCategory(category);
 			throw new CategoryException(result.getReason());
 		} catch (Exception e) {
-			throw new CategoryException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -50,7 +51,7 @@ public class CategoriesManager {
 			else
 				throw new CategoryException(result.getReason());
 		} catch (Exception e) {
-			throw new CategoryException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -63,7 +64,7 @@ public class CategoriesManager {
 			else
 				throw new CategoryException(result.getReason());
 		} catch (Exception e) {
-			throw new CategoryException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -75,7 +76,7 @@ public class CategoriesManager {
 				return categoriesGateway.getCategory(category);
 			throw new CategoryException(result.getReason());
 		} catch (Exception e) {
-			throw new CategoryException(e);
+			throw new TechnicalException(e);
 		}
 	}
 

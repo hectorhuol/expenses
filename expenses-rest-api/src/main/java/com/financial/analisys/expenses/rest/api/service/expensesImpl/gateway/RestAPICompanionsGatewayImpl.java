@@ -3,7 +3,7 @@ package com.financial.analisys.expenses.rest.api.service.expensesImpl.gateway;
 import java.util.List;
 
 import com.financial.analisys.expenses.domain.Companion;
-import com.financial.analisys.expenses.exceptions.CompanionException;
+import com.financial.analisys.expenses.exceptions.TechnicalException;
 import com.financial.analisys.expenses.gateways.CompanionsGateway;
 import com.financial.analisys.expenses.rest.api.domain.CompanionBO;
 import com.financial.analisys.expenses.rest.api.repository.CompanionRepository;
@@ -25,7 +25,7 @@ public class RestAPICompanionsGatewayImpl implements CompanionsGateway {
 			companion.setCompanionId(companionBO.getCompanionId());
 			return companion;
 		} catch (Exception e) {
-			throw new CompanionException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -35,7 +35,7 @@ public class RestAPICompanionsGatewayImpl implements CompanionsGateway {
 			companionRepository.save(BOUtils.transformObject(companion,
 					CompanionBO.class));
 		} catch (Exception e) {
-			throw new CompanionException(e);
+			throw new TechnicalException(e);
 		}
 	}
 	
@@ -45,7 +45,7 @@ public class RestAPICompanionsGatewayImpl implements CompanionsGateway {
 			companionRepository.delete(BOUtils.transformObject(companion,
 					CompanionBO.class));
 		} catch (Exception e) {
-			throw new CompanionException(e);
+			throw new TechnicalException(e);
 		}
 	}
 	
@@ -56,7 +56,7 @@ public class RestAPICompanionsGatewayImpl implements CompanionsGateway {
 					.getCompanionId());
 			return BOUtils.transformObject(companionBO, Companion.class);
 		} catch (Exception e) {
-			throw new CompanionException(e);
+			throw new TechnicalException(e);
 		}
 
 	}
@@ -67,7 +67,7 @@ public class RestAPICompanionsGatewayImpl implements CompanionsGateway {
 			List<CompanionBO> list = companionRepository.findAll();
 			return BOUtils.transformObjectList(list, Companion.class);
 		} catch (Exception e) {
-			throw new CompanionException(e);
+			throw new TechnicalException(e);
 		}
 	}
 }

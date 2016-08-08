@@ -9,6 +9,7 @@ import com.financial.analisys.expenses.domain.Companion;
 import com.financial.analisys.expenses.domain.Expense;
 import com.financial.analisys.expenses.domain.User;
 import com.financial.analisys.expenses.exceptions.ExpenseException;
+import com.financial.analisys.expenses.exceptions.TechnicalException;
 import com.financial.analisys.expenses.gateways.ExpensesGateway;
 import com.financial.analisys.expenses.gateways.ExpensesReportsGateway;
 import com.financial.analisys.expenses.validators.ExpensesValidator;
@@ -48,7 +49,7 @@ public class ExpensesManager {
 				return expensesGateway.createExpense(expense);
 			throw new ExpenseException(result.getReason());
 		} catch (Exception e) {
-			throw new ExpenseException(e);
+			throw new TechnicalException(e);
 		}
 
 	}
@@ -62,7 +63,7 @@ public class ExpensesManager {
 			else
 				throw new ExpenseException(result.getReason());
 		} catch (Exception e) {
-			throw new ExpenseException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -75,7 +76,7 @@ public class ExpensesManager {
 			else
 				throw new ExpenseException(result.getReason());
 		} catch (Exception e) {
-			throw new ExpenseException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -87,7 +88,7 @@ public class ExpensesManager {
 				return expensesGateway.getExpense(expense);
 			throw new ExpenseException(result.getReason());
 		} catch (Exception e) {
-			throw new ExpenseException(e);
+			throw new TechnicalException(e);
 		}
 	}
 

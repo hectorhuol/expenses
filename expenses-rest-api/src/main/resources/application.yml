@@ -7,5 +7,5 @@ spring:
       database: expenses
       port: 27017
 server:
-  context-path: /accounts
+  context-path: /expenses-api
   port: 8080

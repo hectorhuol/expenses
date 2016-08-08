@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.financial.analisys.expenses.domain.Companion;
 import com.financial.analisys.expenses.exceptions.CompanionException;
+import com.financial.analisys.expenses.exceptions.TechnicalException;
 import com.financial.analisys.expenses.gateways.CompanionsGateway;
 import com.financial.analisys.expenses.validators.CompanionsValidator;
 import com.financial.analisys.expenses.validators.ValidationResult;
@@ -37,7 +38,7 @@ public class CompanionsManager {
 				return companionsGateway.createCompanion(companion);
 			throw new CompanionException(result.getReason());
 		} catch (Exception e) {
-			throw new CompanionException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -50,7 +51,7 @@ public class CompanionsManager {
 			else
 				throw new CompanionException(result.getReason());
 		} catch (Exception e) {
-			throw new CompanionException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -63,7 +64,7 @@ public class CompanionsManager {
 			else
 				throw new CompanionException(result.getReason());
 		} catch (Exception e) {
-			throw new CompanionException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -75,7 +76,7 @@ public class CompanionsManager {
 				return companionsGateway.getCompanion(companion);
 			throw new CompanionException(result.getReason());
 		} catch (Exception e) {
-			throw new CompanionException(e);
+			throw new TechnicalException(e);
 		}
 	}
 

@@ -3,7 +3,7 @@ package com.financial.analisys.expenses.rest.api.service.expensesImpl.gateway;
 import java.util.List;
 
 import com.financial.analisys.expenses.domain.Category;
-import com.financial.analisys.expenses.exceptions.CategoryException;
+import com.financial.analisys.expenses.exceptions.TechnicalException;
 import com.financial.analisys.expenses.gateways.CategoriesGateway;
 import com.financial.analisys.expenses.rest.api.domain.CategoryBO;
 import com.financial.analisys.expenses.rest.api.repository.CategoryRepository;
@@ -25,7 +25,7 @@ public class RestAPICategoriesGatewayImpl implements CategoriesGateway {
 			category.setCategoryId(categoryBO.getCategoryId());
 			return category;
 		} catch (Exception e) {
-			throw new CategoryException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -35,7 +35,7 @@ public class RestAPICategoriesGatewayImpl implements CategoriesGateway {
 			categoryRepository.save(BOUtils.transformObject(category,
 					CategoryBO.class));
 		} catch (Exception e) {
-			throw new CategoryException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -45,7 +45,7 @@ public class RestAPICategoriesGatewayImpl implements CategoriesGateway {
 			categoryRepository.delete(BOUtils.transformObject(category,
 					CategoryBO.class));
 		} catch (Exception e) {
-			throw new CategoryException(e);
+			throw new TechnicalException(e);
 		}
 	}
 	
@@ -56,7 +56,7 @@ public class RestAPICategoriesGatewayImpl implements CategoriesGateway {
 					.getCategoryId());
 			return BOUtils.transformObject(categoryBO, Category.class);
 		} catch (Exception e) {
-			throw new CategoryException(e);
+			throw new TechnicalException(e);
 		}
 
 	}
@@ -67,7 +67,7 @@ public class RestAPICategoriesGatewayImpl implements CategoriesGateway {
 			List<CategoryBO> list = categoryRepository.findAll();
 			return BOUtils.transformObjectList(list, Category.class);
 		} catch (Exception e) {
-			throw new CategoryException(e);
+			throw new TechnicalException(e);
 		}
 	}
 }

@@ -14,22 +14,22 @@ import com.financial.analisys.expenses.rest.api.service.CardService;
 
 @RestController
 public class CardController {
-	
+
 	@Autowired
 	private CardService cardService;
-	
+
 	@RequestMapping(path = "/card", method = RequestMethod.POST)
-	public CardBO createCard(@RequestBody CardBO cardBO){
+	public CardBO createCard(@RequestBody CardBO cardBO) {
 		return cardService.createCard(cardBO);
 	}
 
 	@RequestMapping(path = "/card", method = RequestMethod.PUT)
-	public void updateCard(@RequestBody CardBO cardBO){
+	public void updateCard(@RequestBody CardBO cardBO) {
 		cardService.updateCard(cardBO);
 	}
 
 	@RequestMapping(path = "/card/{id}", method = RequestMethod.DELETE)
-	public void deleteCard(@PathVariable String id){
+	public void deleteCard(@PathVariable String id) {
 		cardService.deleteCard(id);
 	}
 
@@ -37,10 +37,9 @@ public class CardController {
 	public CardBO getCard(@PathVariable String id) {
 		return cardService.getCard(id);
 	}
-	
-	@RequestMapping(path = "/card", method = RequestMethod.GET)	
-	public List<CardBO> getAllCards(){
+
+	@RequestMapping(path = "/card", method = RequestMethod.GET)
+	public List<CardBO> getAllCards() {
 		return cardService.getAllCards();
 	}
-	
 }

@@ -14,22 +14,22 @@ import com.financial.analisys.expenses.rest.api.service.UserService;
 
 @RestController
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@RequestMapping(path = "/user", method = RequestMethod.POST)
-	public UserBO createUser(@RequestBody UserBO user){
+	public UserBO createUser(@RequestBody UserBO user) {
 		return userService.createUser(user);
 	}
 
 	@RequestMapping(path = "/user", method = RequestMethod.PUT)
-	public void updateUser(@RequestBody UserBO user){
+	public void updateUser(@RequestBody UserBO user) {
 		userService.updateUser(user);
 	}
 
 	@RequestMapping(path = "/user/{id}", method = RequestMethod.DELETE)
-	public void deleteUser(@PathVariable String id){
+	public void deleteUser(@PathVariable String id) {
 		userService.deleteUser(id);
 	}
 
@@ -37,10 +37,10 @@ public class UserController {
 	public UserBO getUser(@PathVariable String id) {
 		return userService.getUser(id);
 	}
-	
-	@RequestMapping(path = "/user", method = RequestMethod.GET)	
-	public List<UserBO> getAllUsers(){
+
+	@RequestMapping(path = "/user", method = RequestMethod.GET)
+	public List<UserBO> getAllUsers() {
 		return userService.getAllUsers();
 	}
-	
+
 }

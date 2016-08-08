@@ -3,6 +3,7 @@ package com.financial.analisys.expenses.managers;
 import java.util.List;
 
 import com.financial.analisys.expenses.domain.User;
+import com.financial.analisys.expenses.exceptions.TechnicalException;
 import com.financial.analisys.expenses.exceptions.UserException;
 import com.financial.analisys.expenses.gateways.UsersGateway;
 import com.financial.analisys.expenses.validators.UsersValidator;
@@ -36,7 +37,7 @@ public class UsersManager {
 				return usersGateway.createUser(user);
 			throw new UserException(result.getReason());
 		} catch (Exception e) {
-			throw new UserException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -49,7 +50,7 @@ public class UsersManager {
 			else
 				throw new UserException(result.getReason());
 		} catch (Exception e) {
-			throw new UserException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -62,7 +63,7 @@ public class UsersManager {
 			else
 				throw new UserException(result.getReason());
 		} catch (Exception e) {
-			throw new UserException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -74,7 +75,7 @@ public class UsersManager {
 				return usersGateway.getUser(user);
 			throw new UserException(result.getReason());
 		} catch (Exception e) {
-			throw new UserException(e);
+			throw new TechnicalException(e);
 		}
 	}
 

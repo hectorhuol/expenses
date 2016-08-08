@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.financial.analisys.expenses.domain.Expense;
 import com.financial.analisys.expenses.domain.User;
-import com.financial.analisys.expenses.exceptions.ExpenseException;
+import com.financial.analisys.expenses.exceptions.TechnicalException;
 import com.financial.analisys.expenses.gateways.ExpensesGateway;
 import com.financial.analisys.expenses.rest.api.domain.ExpenseBO;
 import com.financial.analisys.expenses.rest.api.repository.ExpenseRepository;
@@ -26,7 +26,7 @@ public class RestAPIExpensesGatewayImpl implements ExpensesGateway {
 			expense.setExpenseId(expenseBO.getExpenseId());
 			return expense;
 		} catch (Exception e) {
-			throw new ExpenseException(e);
+			throw new TechnicalException(e);
 		}
 	}
 	
@@ -36,7 +36,7 @@ public class RestAPIExpensesGatewayImpl implements ExpensesGateway {
 			expenseRepository.save(BOUtils.transformObject(expense,
 					ExpenseBO.class));
 		} catch (Exception e) {
-			throw new ExpenseException(e);
+			throw new TechnicalException(e);
 		}
 	}
 	
@@ -46,7 +46,7 @@ public class RestAPIExpensesGatewayImpl implements ExpensesGateway {
 			expenseRepository.delete(BOUtils.transformObject(expense,
 					ExpenseBO.class));
 		} catch (Exception e) {
-			throw new ExpenseException(e);
+			throw new TechnicalException(e);
 		}
 	}
 
@@ -57,7 +57,7 @@ public class RestAPIExpensesGatewayImpl implements ExpensesGateway {
 					.getExpenseId());
 			return BOUtils.transformObject(expenseBO, Expense.class);
 		} catch (Exception e) {
-			throw new ExpenseException(e);
+			throw new TechnicalException(e);
 		}
 
 	}
@@ -68,7 +68,7 @@ public class RestAPIExpensesGatewayImpl implements ExpensesGateway {
 			List<ExpenseBO> list = expenseRepository.findAll();
 			return BOUtils.transformObjectList(list, Expense.class);
 		} catch (Exception e) {
-			throw new ExpenseException(e);
+			throw new TechnicalException(e);
 		}
 	}
 }
