@@ -19,59 +19,37 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserBO createUser(UserBO userBO) {
-		try {
-			User user = expensesAPIFacade.getUsersManager().createUser(
-					BOUtils.transformObject(userBO, User.class));
-			userBO.setUserId(user.getUserId());
-			return userBO;
-
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		User user = expensesAPIFacade.getUsersManager().createUser(
+				BOUtils.transformObject(userBO, User.class));
+		userBO.setUserId(user.getUserId());
+		return userBO;
 	}
 
 	@Override
 	public void updateUser(UserBO userBO) {
-		try {
-			expensesAPIFacade.getUsersManager().updateUser(
-					BOUtils.transformObject(userBO, User.class));
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		expensesAPIFacade.getUsersManager().updateUser(
+				BOUtils.transformObject(userBO, User.class));
 	}
 
 	@Override
 	public void deleteUser(String id) {
-		try {
-			User user = new User();
-			user.setUserId(id);
-			expensesAPIFacade.getUsersManager().deleteUser(user);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		User user = new User();
+		user.setUserId(id);
+		expensesAPIFacade.getUsersManager().deleteUser(user);
 	}
 
 	@Override
 	public UserBO getUser(String id) {
-		try {
-			User user = new User();
-			user.setUserId(id);
-			user = expensesAPIFacade.getUsersManager().getUser(user);
-			return BOUtils.transformObject(user, UserBO.class);
-
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		User user = new User();
+		user.setUserId(id);
+		user = expensesAPIFacade.getUsersManager().getUser(user);
+		return BOUtils.transformObject(user, UserBO.class);
 	}
 
 	@Override
 	public List<UserBO> getAllUsers() {
-		try {
-			List<User> users = expensesAPIFacade.getUsersManager().getAllUsers();
-			return BOUtils.transformObjectList(users, UserBO.class);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		List<User> users = expensesAPIFacade.getUsersManager().getAllUsers();
+		return BOUtils.transformObjectList(users, UserBO.class);
 	}
 
 }

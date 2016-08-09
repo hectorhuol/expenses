@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.financial.analisys.expenses.domain.Category;
 import com.financial.analisys.expenses.exceptions.CategoryException;
-import com.financial.analisys.expenses.exceptions.TechnicalException;
 import com.financial.analisys.expenses.gateways.CategoriesGateway;
 import com.financial.analisys.expenses.validators.CategoriesValidator;
 import com.financial.analisys.expenses.validators.ValidationResult;
@@ -31,53 +30,37 @@ public class CategoriesManager {
 	}
 
 	public Category createCategory(Category category) {
-		try {
-			ValidationResult result = categoriesValidator.validate(category,
-					ValidationType.CREATE);
-			if (result.isValid())
-				return categoriesGateway.createCategory(category);
-			throw new CategoryException(result.getReason());
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		ValidationResult result = categoriesValidator.validate(category,
+				ValidationType.CREATE);
+		if (result.isValid())
+			return categoriesGateway.createCategory(category);
+		throw new CategoryException(result.getReason());
 	}
 
 	public void updateCategory(Category category) {
-		try {
-			ValidationResult result = categoriesValidator.validate(category,
-					ValidationType.UPDATE);
-			if (result.isValid())
-				categoriesGateway.updateCategory(category);
-			else
-				throw new CategoryException(result.getReason());
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		ValidationResult result = categoriesValidator.validate(category,
+				ValidationType.UPDATE);
+		if (result.isValid())
+			categoriesGateway.updateCategory(category);
+		else
+			throw new CategoryException(result.getReason());
 	}
 
 	public void deleteCategory(Category category) {
-		try {
-			ValidationResult result = categoriesValidator.validate(category,
-					ValidationType.DELETE);
-			if (result.isValid())
-				categoriesGateway.deleteCategory(category);
-			else
-				throw new CategoryException(result.getReason());
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		ValidationResult result = categoriesValidator.validate(category,
+				ValidationType.DELETE);
+		if (result.isValid())
+			categoriesGateway.deleteCategory(category);
+		else
+			throw new CategoryException(result.getReason());
 	}
 
 	public Category getCategory(Category category) {
-		try {
-			ValidationResult result = categoriesValidator.validate(category,
-					ValidationType.READ);
-			if (result.isValid())
-				return categoriesGateway.getCategory(category);
-			throw new CategoryException(result.getReason());
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		ValidationResult result = categoriesValidator.validate(category,
+				ValidationType.READ);
+		if (result.isValid())
+			return categoriesGateway.getCategory(category);
+		throw new CategoryException(result.getReason());
 	}
 
 	public List<Category> getAllCategories() {

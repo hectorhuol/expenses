@@ -19,59 +19,37 @@ public class CardServiceImpl implements CardService {
 
 	@Override
 	public CardBO createCard(CardBO cardBO) {
-		try {
-			Card card = expensesAPIFacade.getCardsManager().createCard(
-					BOUtils.transformObject(cardBO, Card.class));
-			cardBO.setCardId(card.getCardId());
-			return cardBO;
-
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		Card card = expensesAPIFacade.getCardsManager().createCard(
+				BOUtils.transformObject(cardBO, Card.class));
+		cardBO.setCardId(card.getCardId());
+		return cardBO;
 	}
 
 	@Override
 	public void updateCard(CardBO cardBO) {
-		try {
-			expensesAPIFacade.getCardsManager().updateCard(
-					BOUtils.transformObject(cardBO, Card.class));
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		expensesAPIFacade.getCardsManager().updateCard(
+				BOUtils.transformObject(cardBO, Card.class));
 	}
 
 	@Override
 	public void deleteCard(String id) {
-		try {
-			Card card = new Card();
-			card.setCardId(id);
-			expensesAPIFacade.getCardsManager().deleteCard(card);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		Card card = new Card();
+		card.setCardId(id);
+		expensesAPIFacade.getCardsManager().deleteCard(card);
 	}
 
 	@Override
 	public CardBO getCard(String id) {
-		try {
-			Card card = new Card();
-			card.setCardId(id);
-			card = expensesAPIFacade.getCardsManager().getCard(card);
-			return BOUtils.transformObject(card, CardBO.class);
-
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		Card card = new Card();
+		card.setCardId(id);
+		card = expensesAPIFacade.getCardsManager().getCard(card);
+		return BOUtils.transformObject(card, CardBO.class);
 	}
 
 	@Override
 	public List<CardBO> getAllCards() {
-		try {
-			List<Card> cards = expensesAPIFacade.getCardsManager().getAllCards();
-			return BOUtils.transformObjectList(cards, CardBO.class);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		List<Card> cards = expensesAPIFacade.getCardsManager().getAllCards();
+		return BOUtils.transformObjectList(cards, CardBO.class);
 	}
 
 }

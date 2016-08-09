@@ -9,7 +9,6 @@ import com.financial.analisys.expenses.domain.Companion;
 import com.financial.analisys.expenses.domain.Expense;
 import com.financial.analisys.expenses.domain.User;
 import com.financial.analisys.expenses.exceptions.ExpenseException;
-import com.financial.analisys.expenses.exceptions.TechnicalException;
 import com.financial.analisys.expenses.gateways.ExpensesGateway;
 import com.financial.analisys.expenses.gateways.ExpensesReportsGateway;
 import com.financial.analisys.expenses.validators.ExpensesValidator;
@@ -42,54 +41,37 @@ public class ExpensesManager {
 	}
 
 	public Expense createExpense(Expense expense) {
-		try {
-			ValidationResult result = expensesValidator.validate(expense,
-					ValidationType.CREATE);
-			if (result.isValid())
-				return expensesGateway.createExpense(expense);
-			throw new ExpenseException(result.getReason());
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
-
+		ValidationResult result = expensesValidator.validate(expense,
+				ValidationType.CREATE);
+		if (result.isValid())
+			return expensesGateway.createExpense(expense);
+		throw new ExpenseException(result.getReason());
 	}
 
 	public void updateExpense(Expense expense) {
-		try {
-			ValidationResult result = expensesValidator.validate(expense,
-					ValidationType.UPDATE);
-			if (result.isValid())
-				expensesGateway.updateExpense(expense);
-			else
-				throw new ExpenseException(result.getReason());
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		ValidationResult result = expensesValidator.validate(expense,
+				ValidationType.UPDATE);
+		if (result.isValid())
+			expensesGateway.updateExpense(expense);
+		else
+			throw new ExpenseException(result.getReason());
 	}
 
 	public void deleteExpense(Expense expense) {
-		try {
-			ValidationResult result = expensesValidator.validate(expense,
-					ValidationType.DELETE);
-			if (result.isValid())
-				expensesGateway.deleteExpense(expense);
-			else
-				throw new ExpenseException(result.getReason());
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		ValidationResult result = expensesValidator.validate(expense,
+				ValidationType.DELETE);
+		if (result.isValid())
+			expensesGateway.deleteExpense(expense);
+		else
+			throw new ExpenseException(result.getReason());
 	}
 
 	public Expense getExpense(Expense expense) {
-		try {
-			ValidationResult result = expensesValidator.validate(expense,
-					ValidationType.READ);
-			if (result.isValid())
-				return expensesGateway.getExpense(expense);
-			throw new ExpenseException(result.getReason());
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		ValidationResult result = expensesValidator.validate(expense,
+				ValidationType.READ);
+		if (result.isValid())
+			return expensesGateway.getExpense(expense);
+		throw new ExpenseException(result.getReason());
 	}
 
 	public List<Expense> getAllUserExpenses(User user) {

@@ -9,12 +9,12 @@ import com.financial.analisys.expenses.domain.Category;
 import com.financial.analisys.expenses.domain.Companion;
 import com.financial.analisys.expenses.domain.Expense;
 import com.financial.analisys.expenses.domain.User;
-import com.financial.analisys.expenses.exceptions.TechnicalException;
 import com.financial.analisys.expenses.gateways.ExpensesReportsGateway;
 import com.financial.analisys.expenses.rest.api.domain.CategoryBO;
 import com.financial.analisys.expenses.rest.api.domain.CompanionBO;
 import com.financial.analisys.expenses.rest.api.domain.ExpenseBO;
 import com.financial.analisys.expenses.rest.api.domain.UserBO;
+import com.financial.analisys.expenses.rest.api.exceptions.NoDataFoundException;
 import com.financial.analisys.expenses.rest.api.repository.ExpenseRepository;
 import com.financial.analisys.expenses.rest.api.utils.BOUtils;
 import com.financial.analisys.expenses.utils.FinancialUtils;
@@ -31,44 +31,36 @@ public class RestAPIReportsExpensesGatewayImpl implements
 	@Override
 	public List<Expense> getExpensesByCategoryByUser(Category category,
 			User user) {
-		try {
-			CategoryBO categoryBO = BOUtils.transformObject(category,
-					CategoryBO.class);
-			UserBO userBO = BOUtils.transformObject(user, UserBO.class);
-			List<ExpenseBO> list = expenseRepository.findByUserAndCategory(
-					userBO, categoryBO);
+		CategoryBO categoryBO = BOUtils.transformObject(category,
+				CategoryBO.class);
+		UserBO userBO = BOUtils.transformObject(user, UserBO.class);
+		List<ExpenseBO> list = expenseRepository.findByUserAndCategory(userBO,
+				categoryBO);
+		if (isObjectNull(list))
 			return BOUtils.transformObjectList(list, Expense.class);
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		throw new NoDataFoundException("No data found");
 	}
 
 	@Override
 	public List<Expense> getExpensesByCityByUser(String cityName, User user) {
-		try {
-			UserBO userBO = BOUtils.transformObject(user, UserBO.class);
-			List<ExpenseBO> list = expenseRepository.findByUserAndCity(userBO,
-					cityName);
+		UserBO userBO = BOUtils.transformObject(user, UserBO.class);
+		List<ExpenseBO> list = expenseRepository.findByUserAndCity(userBO,
+				cityName);
+		if (isObjectNull(list))
 			return BOUtils.transformObjectList(list, Expense.class);
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		throw new NoDataFoundException("No data found");
 	}
 
 	@Override
 	public List<Expense> getExpensesByCompanionsByUser(
 			List<Companion> companions, User user) {
-		try {
-			List<ExpenseBO> list = getValuesList(user);
-			list = findByCompanions(companions, list);
-			return BOUtils.transformObjectList(list, Expense.class);
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		List<ExpenseBO> list = getValuesList(user);
+		list = findByCompanions(companions, list);
+		return BOUtils.transformObjectList(list, Expense.class);
 	}
 
 	private List<ExpenseBO> findByCompanions(List<Companion> companions,
-			List<ExpenseBO> list) throws Exception {
+			List<ExpenseBO> list) {
 		List<ExpenseBO> values = new ArrayList<ExpenseBO>();
 		for (ExpenseBO expenseBO : list) {
 			if (hasSomeCompanion(expenseBO.getCompanions(), companions))
@@ -78,7 +70,7 @@ public class RestAPIReportsExpensesGatewayImpl implements
 	}
 
 	private boolean hasSomeCompanion(List<CompanionBO> expenseCompanions,
-			List<Companion> companions) throws Exception {
+			List<Companion> companions) {
 		List<CompanionBO> companionsBO = BOUtils.transformObjectList(
 				companions, CompanionBO.class);
 		for (CompanionBO companionBO : expenseCompanions)
@@ -89,14 +81,9 @@ public class RestAPIReportsExpensesGatewayImpl implements
 
 	@Override
 	public List<Expense> getExpensesByMonthByUser(LocalDate month, User user) {
-		try {
-
-			List<ExpenseBO> list = getValuesList(user);
-			list = findByMonth(month, list);
-			return BOUtils.transformObjectList(list, Expense.class);
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		List<ExpenseBO> list = getValuesList(user);
+		list = findByMonth(month, list);
+		return BOUtils.transformObjectList(list, Expense.class);
 	}
 
 	private List<ExpenseBO> findByMonth(LocalDate month, List<ExpenseBO> list) {
@@ -115,13 +102,9 @@ public class RestAPIReportsExpensesGatewayImpl implements
 
 	@Override
 	public List<Expense> getExpensesByDayByUser(LocalDate day, User user) {
-		try {
-			List<ExpenseBO> list = getValuesList(user);
-			list = findByDay(day, list);
-			return BOUtils.transformObjectList(list, Expense.class);
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		List<ExpenseBO> list = getValuesList(user);
+		list = findByDay(day, list);
+		return BOUtils.transformObjectList(list, Expense.class);
 	}
 
 	private List<ExpenseBO> findByDay(LocalDate day, List<ExpenseBO> list) {
@@ -141,13 +124,9 @@ public class RestAPIReportsExpensesGatewayImpl implements
 	@Override
 	public List<Expense> getExpensesBetweenDatesByUser(LocalDateTime startDate,
 			LocalDateTime finishDate, User user) {
-		try {
-			List<ExpenseBO> list = getValuesList(user);
-			list = findBetweenDates(startDate, finishDate, list);
-			return BOUtils.transformObjectList(list, Expense.class);
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		List<ExpenseBO> list = getValuesList(user);
+		list = findBetweenDates(startDate, finishDate, list);
+		return BOUtils.transformObjectList(list, Expense.class);
 	}
 
 	private List<ExpenseBO> findBetweenDates(LocalDateTime startDate,
@@ -173,9 +152,15 @@ public class RestAPIReportsExpensesGatewayImpl implements
 						.toLocalDate().isEqual(finishDate.toLocalDate());
 	}
 
-	private List<ExpenseBO> getValuesList(User user) throws Exception {
+	private List<ExpenseBO> getValuesList(User user) {
 		UserBO userBO = BOUtils.transformObject(user, UserBO.class);
 		List<ExpenseBO> list = expenseRepository.findByUser(userBO);
-		return list;
+		if (isObjectNull(list))
+			return list;
+		throw new NoDataFoundException("No data found");
+	}
+
+	private boolean isObjectNull(Object object) {
+		return object != null;
 	}
 }

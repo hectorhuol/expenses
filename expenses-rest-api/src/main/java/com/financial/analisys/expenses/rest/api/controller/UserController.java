@@ -42,5 +42,4 @@ public class UserController {
 	public List<UserBO> getAllUsers() {
 		return userService.getAllUsers();
 	}
-
 }

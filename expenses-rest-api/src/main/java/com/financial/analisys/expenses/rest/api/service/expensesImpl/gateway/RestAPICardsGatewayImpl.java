@@ -3,9 +3,9 @@ package com.financial.analisys.expenses.rest.api.service.expensesImpl.gateway;
 import java.util.List;
 
 import com.financial.analisys.expenses.domain.Card;
-import com.financial.analisys.expenses.exceptions.TechnicalException;
 import com.financial.analisys.expenses.gateways.CardsGateway;
 import com.financial.analisys.expenses.rest.api.domain.CardBO;
+import com.financial.analisys.expenses.rest.api.exceptions.NoDataFoundException;
 import com.financial.analisys.expenses.rest.api.repository.CardRepository;
 import com.financial.analisys.expenses.rest.api.utils.BOUtils;
 
@@ -19,52 +19,42 @@ public class RestAPICardsGatewayImpl implements CardsGateway {
 
 	@Override
 	public Card createCard(Card card) {
-		try {
-			CardBO cardBO = cardRepository.save(BOUtils.transformObject(card,
-					CardBO.class));
+		CardBO cardBO = cardRepository.save(BOUtils.transformObject(card,
+				CardBO.class));
+		if (isObjectNull(cardBO)) {
 			card.setCardId(cardBO.getCardId());
 			return card;
-		} catch (Exception e) {
-			throw new TechnicalException(e);
 		}
+		throw new NoDataFoundException("No data found");
 	}
 
 	@Override
 	public void updateCard(Card card) {
-		try {
-			cardRepository.save(BOUtils.transformObject(card, CardBO.class));
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		cardRepository.save(BOUtils.transformObject(card, CardBO.class));
 	}
 
 	@Override
 	public void deleteCard(Card card) {
-		try {
-			cardRepository.delete(BOUtils.transformObject(card, CardBO.class));
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		cardRepository.delete(BOUtils.transformObject(card, CardBO.class));
 	}
 
 	@Override
 	public Card getCard(Card card) {
-		try {
-			CardBO cardBO = cardRepository.findOne(card.getCardId());
+		CardBO cardBO = cardRepository.findOne(card.getCardId());
+		if (isObjectNull(cardBO))
 			return BOUtils.transformObject(cardBO, Card.class);
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
-
+		throw new NoDataFoundException("No data found");
 	}
 
 	@Override
 	public List<Card> getAllCards() {
-		try {
-			List<CardBO> list = cardRepository.findAll();
+		List<CardBO> list = cardRepository.findAll();
+		if (isObjectNull(list))
 			return BOUtils.transformObjectList(list, Card.class);
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		throw new NoDataFoundException("No data found");
+	}
+
+	private boolean isObjectNull(Object object) {
+		return object != null;
 	}
 }

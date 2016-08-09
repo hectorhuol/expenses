@@ -19,63 +19,40 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public CategoryBO createCategory(CategoryBO categoryBO) {
-		try {
-			Category category = expensesAPIFacade
-					.getCategoriesManager()
-					.createCategory(
-							BOUtils.transformObject(categoryBO, Category.class));
-			categoryBO.setCategoryId(category.getCategoryId());
-			return categoryBO;
-
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		Category category = expensesAPIFacade.getCategoriesManager()
+				.createCategory(
+						BOUtils.transformObject(categoryBO, Category.class));
+		categoryBO.setCategoryId(category.getCategoryId());
+		return categoryBO;
 	}
 
 	@Override
 	public void updateCategory(CategoryBO categoryBO) {
-		try {
-			expensesAPIFacade.getCategoriesManager().updateCategory(
-					BOUtils.transformObject(categoryBO, Category.class));
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		expensesAPIFacade.getCategoriesManager().updateCategory(
+				BOUtils.transformObject(categoryBO, Category.class));
 	}
 
 	@Override
 	public void deleteCategory(String id) {
-		try {
-			Category category = new Category();
-			category.setCategoryId(id);
-			expensesAPIFacade.getCategoriesManager().deleteCategory(category);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		Category category = new Category();
+		category.setCategoryId(id);
+		expensesAPIFacade.getCategoriesManager().deleteCategory(category);
 	}
 
 	@Override
 	public CategoryBO getCategory(String id) {
-		try {
-			Category category = new Category();
-			category.setCategoryId(id);
-			category = expensesAPIFacade.getCategoriesManager().getCategory(
-					category);
-			return BOUtils.transformObject(category, CategoryBO.class);
-
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		Category category = new Category();
+		category.setCategoryId(id);
+		category = expensesAPIFacade.getCategoriesManager().getCategory(
+				category);
+		return BOUtils.transformObject(category, CategoryBO.class);
 	}
 
 	@Override
 	public List<CategoryBO> getAllCategories() {
-		try {
-			List<Category> categories = expensesAPIFacade.getCategoriesManager()
-					.getAllCategories();
-			return BOUtils.transformObjectList(categories, CategoryBO.class);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		List<Category> categories = expensesAPIFacade.getCategoriesManager()
+				.getAllCategories();
+		return BOUtils.transformObjectList(categories, CategoryBO.class);
 	}
 
 }

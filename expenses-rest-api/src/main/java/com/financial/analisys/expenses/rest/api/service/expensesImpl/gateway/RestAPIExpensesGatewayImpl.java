@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.financial.analisys.expenses.domain.Expense;
 import com.financial.analisys.expenses.domain.User;
-import com.financial.analisys.expenses.exceptions.TechnicalException;
 import com.financial.analisys.expenses.gateways.ExpensesGateway;
 import com.financial.analisys.expenses.rest.api.domain.ExpenseBO;
+import com.financial.analisys.expenses.rest.api.exceptions.NoDataFoundException;
 import com.financial.analisys.expenses.rest.api.repository.ExpenseRepository;
 import com.financial.analisys.expenses.rest.api.utils.BOUtils;
 
@@ -17,58 +17,47 @@ public class RestAPIExpensesGatewayImpl implements ExpensesGateway {
 	public RestAPIExpensesGatewayImpl(ExpenseRepository expenseRepository) {
 		this.expenseRepository = expenseRepository;
 	}
-	
+
 	@Override
 	public Expense createExpense(Expense expense) {
-		try {
-			ExpenseBO expenseBO = expenseRepository.save(BOUtils
-					.transformObject(expense, ExpenseBO.class));
+		ExpenseBO expenseBO = expenseRepository.save(BOUtils.transformObject(
+				expense, ExpenseBO.class));
+		if (isObjectNull(expenseBO)) {
 			expense.setExpenseId(expenseBO.getExpenseId());
 			return expense;
-		} catch (Exception e) {
-			throw new TechnicalException(e);
 		}
+		throw new NoDataFoundException("No data found");
 	}
-	
+
 	@Override
 	public void updateExpense(Expense expense) {
-		try {
-			expenseRepository.save(BOUtils.transformObject(expense,
-					ExpenseBO.class));
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		expenseRepository.save(BOUtils
+				.transformObject(expense, ExpenseBO.class));
 	}
-	
+
 	@Override
 	public void deleteExpense(Expense expense) {
-		try {
-			expenseRepository.delete(BOUtils.transformObject(expense,
-					ExpenseBO.class));
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		expenseRepository.delete(BOUtils.transformObject(expense,
+				ExpenseBO.class));
 	}
 
 	@Override
 	public Expense getExpense(Expense expense) {
-		try {
-			ExpenseBO expenseBO = expenseRepository.findOne(expense
-					.getExpenseId());
+		ExpenseBO expenseBO = expenseRepository.findOne(expense.getExpenseId());
+		if (isObjectNull(expenseBO))
 			return BOUtils.transformObject(expenseBO, Expense.class);
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
-
+		throw new NoDataFoundException("No data found");
 	}
-	
+
 	@Override
 	public List<Expense> getAllUserExpenses(User user) {
-		try {
-			List<ExpenseBO> list = expenseRepository.findAll();
+		List<ExpenseBO> list = expenseRepository.findAll();
+		if (isObjectNull(list))
 			return BOUtils.transformObjectList(list, Expense.class);
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+		throw new NoDataFoundException("No data found");
+	}
+
+	private boolean isObjectNull(Object object) {
+		return object != null;
 	}
 }
