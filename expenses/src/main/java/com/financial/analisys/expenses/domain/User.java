@@ -38,15 +38,13 @@ public class User {
 		if (obj instanceof User) {
 			User user = (User) obj;
 			return new EqualsBuilder().append(this.userId, user.userId)
-					.append(this.userName, user.userName)
-					.append(this.password, user.password).isEquals();
+					.isEquals();
 		}
 		return false;
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(userId).append(userName)
-				.append(password).toHashCode();
+		return new HashCodeBuilder().append(userId).toHashCode();
 	}
 }

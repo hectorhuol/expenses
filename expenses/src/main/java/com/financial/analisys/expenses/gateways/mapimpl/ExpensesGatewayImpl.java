@@ -19,7 +19,7 @@ public class ExpensesGatewayImpl implements ExpensesGateway {
 
 	private String getNextExpenseId() {
 		List<Expense> values = getValuesList();
-		if(values==null || values.isEmpty())
+		if (values == null || values.isEmpty())
 			return "1";
 		Integer nextId = Integer.valueOf(values.get(values.size() - 1)
 				.getExpenseId()) + 1;
@@ -39,6 +39,10 @@ public class ExpensesGatewayImpl implements ExpensesGateway {
 	public Expense getExpense(Expense expense) {
 		return Repository.expensesRepository.get(expense.getExpenseId());
 
+	}
+
+	public List<Expense> getAllExpenses() {
+		return getValuesList();
 	}
 
 	public List<Expense> getAllUserExpenses(User user) {

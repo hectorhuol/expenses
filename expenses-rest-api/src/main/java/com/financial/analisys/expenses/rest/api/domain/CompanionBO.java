@@ -44,17 +44,14 @@ public class CompanionBO {
 	public boolean equals(Object obj) {
 		if (obj instanceof CompanionBO) {
 			CompanionBO companion = (CompanionBO) obj;
-			return new EqualsBuilder()
-					.append(this.companionId, companion.companionId)
-					.append(this.name, companion.name)
-					.append(this.alias, companion.alias).isEquals();
+			return new EqualsBuilder().append(this.companionId,
+					companion.companionId).isEquals();
 		}
 		return false;
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(companionId).append(name)
-				.append(alias).toHashCode();
+		return new HashCodeBuilder().append(companionId).toHashCode();
 	}
 }

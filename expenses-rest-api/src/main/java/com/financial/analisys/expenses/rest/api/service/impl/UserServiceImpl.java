@@ -19,8 +19,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserBO createUser(UserBO userBO) {
-		User user = expensesAPIFacade.getUsersManager().createUser(
-				BOUtils.transformObject(userBO, User.class));
+		User user = BOUtils.transformObject(userBO, User.class);
+		user = expensesAPIFacade.getUsersManager().createUser(user);
 		userBO.setUserId(user.getUserId());
 		return userBO;
 	}

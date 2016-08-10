@@ -73,6 +73,10 @@ public class ExpensesManager {
 			return expensesGateway.getExpense(expense);
 		throw new ExpenseException(result.getReason());
 	}
+	
+	public List<Expense> getAllExpenses() {
+		return expensesGateway.getAllExpenses();
+	}
 
 	public List<Expense> getAllUserExpenses(User user) {
 		return expensesGateway.getAllUserExpenses(user);

@@ -15,6 +15,7 @@ public interface ExpensesGateway {
 
 	public Expense getExpense(Expense expense);
 
+	public List<Expense> getAllExpenses();
+	
 	public List<Expense> getAllUserExpenses(User user);
-
 }

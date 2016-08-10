@@ -45,15 +45,13 @@ public class UserBO {
 		if (obj instanceof UserBO) {
 			UserBO user = (UserBO) obj;
 			return new EqualsBuilder().append(this.userId, user.userId)
-					.append(this.userName, user.userName)
-					.append(this.password, user.password).isEquals();
+					.isEquals();
 		}
 		return false;
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(userId).append(userName)
-				.append(password).toHashCode();
+		return new HashCodeBuilder().append(userId).toHashCode();
 	}
 }

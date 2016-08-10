@@ -13,6 +13,8 @@ public interface ExpenseService {
 	void deleteExpense(String id);
 
 	ExpenseBO getExpense(String id);
+	
+	List<ExpenseBO> getAllExpenses();
 
 	List<ExpenseBO> getAllUserExpenses(String userId);
 

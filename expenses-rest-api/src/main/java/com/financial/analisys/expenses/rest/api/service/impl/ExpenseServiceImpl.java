@@ -52,12 +52,19 @@ public class ExpenseServiceImpl implements ExpenseService {
 	}
 
 	@Override
+	public List<ExpenseBO> getAllExpenses() {
+		List<Expense> expenses = expensesAPIFacade.getExpensesManager()
+				.getAllExpenses();
+		return transformList(expenses);
+	}
+
+	@Override
 	public List<ExpenseBO> getAllUserExpenses(String userId) {
 		User user = new User();
 		user.setUserId(userId);
 		List<Expense> expenses = expensesAPIFacade.getExpensesManager()
 				.getAllUserExpenses(user);
-		return BOUtils.transformObjectList(expenses, ExpenseBO.class);
+		return transformList(expenses);
 	}
 
 	@Override
@@ -69,7 +76,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 		category.setCategoryId(categoryId);
 		List<Expense> expenses = expensesAPIFacade.getExpensesManager()
 				.getExpensesByCategoryByUser(category, user);
-		return BOUtils.transformObjectList(expenses, ExpenseBO.class);
+		return transformList(expenses);
 	}
 
 	@Override
@@ -79,7 +86,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 		user.setUserId(userId);
 		List<Expense> expenses = expensesAPIFacade.getExpensesManager()
 				.getExpensesByCityByUser(cityName, user);
-		return BOUtils.transformObjectList(expenses, ExpenseBO.class);
+		return transformList(expenses);
 	}
 
 	@Override
@@ -90,7 +97,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 		List<Companion> companions = getCompanionsList(companionsIds);
 		List<Expense> expenses = expensesAPIFacade.getExpensesManager()
 				.getExpensesByCompanionsByUser(companions, user);
-		return BOUtils.transformObjectList(expenses, ExpenseBO.class);
+		return transformList(expenses);
 	}
 
 	private List<Companion> getCompanionsList(List<String> companionsIds) {
@@ -111,7 +118,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 				.getExpensesByMonthByUser(
 						FinancialUtils.getLocalDateTime(month).toLocalDate(),
 						user);
-		return BOUtils.transformObjectList(expenses, ExpenseBO.class);
+		return transformList(expenses);
 	}
 
 	@Override
@@ -122,7 +129,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 				.getExpensesByDayByUser(
 						FinancialUtils.getLocalDateTime(day).toLocalDate(),
 						user);
-		return BOUtils.transformObjectList(expenses, ExpenseBO.class);
+		return transformList(expenses);
 	}
 
 	@Override
@@ -134,7 +141,12 @@ public class ExpenseServiceImpl implements ExpenseService {
 				.getExpensesBetweenDatesByUser(
 						FinancialUtils.getLocalDateTime(startDate),
 						FinancialUtils.getLocalDateTime(finishDate), user);
-		return BOUtils.transformObjectList(expenses, ExpenseBO.class);
+		return transformList(expenses);
+	}
+
+	private List<ExpenseBO> transformList(List<Expense> expenses) {
+		return BOUtils.transformObjectList(expenses, ExpenseBO.class,
+				new String[] { "password" });
 	}
 
 }

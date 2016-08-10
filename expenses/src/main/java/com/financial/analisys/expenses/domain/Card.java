@@ -38,15 +38,13 @@ public class Card {
 		if (obj instanceof Card) {
 			Card card = (Card) obj;
 			return new EqualsBuilder().append(this.cardId, card.cardId)
-					.append(this.name, card.name)
-					.append(this.type.name(), card.type.name()).isEquals();
+					.isEquals();
 		}
 		return false;
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(cardId).append(name)
-				.append(type.name()).toHashCode();
+		return new HashCodeBuilder().append(cardId).toHashCode();
 	}
 }

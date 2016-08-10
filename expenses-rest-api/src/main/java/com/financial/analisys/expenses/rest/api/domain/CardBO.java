@@ -45,15 +45,13 @@ public class CardBO {
 		if (obj instanceof CardBO) {
 			CardBO card = (CardBO) obj;
 			return new EqualsBuilder().append(this.cardId, card.cardId)
-					.append(this.name, card.name)
-					.append(this.type.name(), card.type.name()).isEquals();
+					.isEquals();
 		}
 		return false;
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(cardId).append(name)
-				.append(type.name()).toHashCode();
+		return new HashCodeBuilder().append(cardId).toHashCode();
 	}
 }

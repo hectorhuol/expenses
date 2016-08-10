@@ -99,22 +99,13 @@ public class Expense {
 		if (obj instanceof Expense) {
 			Expense expense = (Expense) obj;
 			return new EqualsBuilder()
-					.append(this.expenseId, expense.expenseId)
-					.append(this.value, expense.value)
-					.append(this.dateAndHour, expense.dateAndHour)
-					.append(this.city, expense.city)
-					.append(this.location, expense.location)
-					.append(this.card, expense.card)
-					.append(this.category, expense.category)
-					.append(this.user, expense.user).isEquals();
+					.append(this.expenseId, expense.expenseId).isEquals();
 		}
 		return false;
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(expenseId).append(value)
-				.append(dateAndHour).append(city).append(location).append(card)
-				.append(category).toHashCode();
+		return new HashCodeBuilder().append(expenseId).toHashCode();
 	}
 }

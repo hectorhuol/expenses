@@ -6,6 +6,7 @@ import com.financial.analisys.expenses.domain.Expense;
 import com.financial.analisys.expenses.domain.User;
 import com.financial.analisys.expenses.gateways.ExpensesGateway;
 import com.financial.analisys.expenses.rest.api.domain.ExpenseBO;
+import com.financial.analisys.expenses.rest.api.domain.UserBO;
 import com.financial.analisys.expenses.rest.api.exceptions.NoDataFoundException;
 import com.financial.analisys.expenses.rest.api.repository.ExpenseRepository;
 import com.financial.analisys.expenses.rest.api.utils.BOUtils;
@@ -50,8 +51,17 @@ public class RestAPIExpensesGatewayImpl implements ExpensesGateway {
 	}
 
 	@Override
-	public List<Expense> getAllUserExpenses(User user) {
+	public List<Expense> getAllExpenses() {
 		List<ExpenseBO> list = expenseRepository.findAll();
+		if (isObjectNull(list))
+			return BOUtils.transformObjectList(list, Expense.class);
+		throw new NoDataFoundException("No data found");
+	}
+
+	@Override
+	public List<Expense> getAllUserExpenses(User user) {
+		UserBO userBO = BOUtils.transformObject(user, UserBO.class);
+		List<ExpenseBO> list = expenseRepository.findByUser(userBO);
 		if (isObjectNull(list))
 			return BOUtils.transformObjectList(list, Expense.class);
 		throw new NoDataFoundException("No data found");

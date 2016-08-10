@@ -19,8 +19,8 @@ public class RestAPIUsersGatewayImpl implements UsersGateway {
 
 	@Override
 	public User createUser(User user) {
-		UserBO userBO = userRepository.save(BOUtils.transformObject(user,
-				UserBO.class));
+		UserBO userBO = BOUtils.transformObject(user, UserBO.class);
+		userBO = userRepository.save(userBO);
 		if (isObjectNull(userBO)) {
 			user.setUserId(userBO.getUserId());
 			return user;

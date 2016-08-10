@@ -17,5 +17,4 @@ public interface ExpenseRepository extends MongoRepository<ExpenseBO, String> {
 	List<ExpenseBO> findByUserAndCity(UserBO userBO, String cityName);
 
 	List<ExpenseBO> findByUser(UserBO userBO);
-
 }

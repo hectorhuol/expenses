@@ -38,10 +38,10 @@ public class UserExpensesController {
 
 	@RequestMapping(path = "/user/{userId}/expenses", method = RequestMethod.GET, params = "companionsIds")
 	public List<ExpenseBO> getExpensesByCompanionsByUser(
-			@PathVariable String userId, @RequestParam String companionsIds) {
+			@PathVariable String userId, @RequestParam String[] companionsIds) {
 		List<String> ids = null;
 		if (companionsIds != null)
-			ids = Arrays.asList(companionsIds.split(","));
+			ids = Arrays.asList(companionsIds);
 		return expenseService.getExpensesByCompanionsByUser(ids, userId);
 	}
 

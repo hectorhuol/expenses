@@ -1,5 +1,7 @@
 package com.financial.analisys.expenses.rest.api.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,6 +36,11 @@ public class ExpenseController {
 	@RequestMapping(path = "/expense/{id}", method = RequestMethod.GET)
 	public ExpenseBO getExpense(@PathVariable String id) {
 		return expenseService.getExpense(id);
+	}
+
+	@RequestMapping(path = "/expense", method = RequestMethod.GET)
+	public List<ExpenseBO> getAllExpenses() {
+		return expenseService.getAllExpenses();
 	}
 
 }

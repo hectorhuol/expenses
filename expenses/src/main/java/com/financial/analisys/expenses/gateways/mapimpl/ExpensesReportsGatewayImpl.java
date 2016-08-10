@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.financial.analisys.expenses.domain.Category;
 import com.financial.analisys.expenses.domain.Companion;
@@ -18,17 +19,13 @@ public class ExpensesReportsGatewayImpl implements ExpensesReportsGateway {
 			User user) {
 		List<Expense> values = new ArrayList<Expense>();
 
-		for (Expense expense : getValuesList()) {
-			if (isCategoryEqual(category, expense)
-					&& isUserEqual(user, expense))
-				values.add(expense);
-		}
-
+		values = getValuesList()
+				.stream()
+				.filter(expense -> expense.getCategory().equals(category)
+						&& expense.getUser().equals(user))
+				.collect(Collectors.toList());
+		
 		return values;
-	}
-
-	private boolean isCategoryEqual(Category category, Expense expense) {
-		return expense.getCategory().equals(category);
 	}
 
 	public List<Expense> getExpensesByCityByUser(String cityName, User user) {

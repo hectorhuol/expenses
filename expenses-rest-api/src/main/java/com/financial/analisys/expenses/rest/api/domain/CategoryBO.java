@@ -35,16 +35,14 @@ public class CategoryBO {
 	public boolean equals(Object obj) {
 		if (obj instanceof CategoryBO) {
 			CategoryBO category = (CategoryBO) obj;
-			return new EqualsBuilder()
-					.append(this.categoryId, category.categoryId)
-					.append(this.name, category.name).isEquals();
+			return new EqualsBuilder().append(this.categoryId,
+					category.categoryId).isEquals();
 		}
 		return false;
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(categoryId).append(name)
-				.toHashCode();
+		return new HashCodeBuilder().append(categoryId).toHashCode();
 	}
 }
