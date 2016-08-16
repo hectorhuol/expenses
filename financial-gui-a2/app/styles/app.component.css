@@ -42,11 +42,11 @@
   color: #039be5;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .container {
-    font-size: 50%;
+    font-size: 80%;
   }
   .navigator {
-    font-size: 100%;
+    font-size: 80%;
   }
 }
