@@ -1,4 +1,4 @@
-package com.financial.analisys.financial_gui.util;
+package com.financial.analisys.financialGui.util;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,8 +10,8 @@ import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-import com.financial.analisys.financial_gui.component.FinancialToggleButton;
-import com.financial.analisys.financial_gui.dto.GuiData;
+import com.financial.analisys.financialGui.component.FinancialToggleButton;
+import com.financial.analisys.financialGui.dto.GuiData;
 
 public class GUIUtils {
 
@@ -48,11 +48,11 @@ public class GUIUtils {
 
 	public static boolean isANumber(String expenseValue) {
 		try {
-			Double.valueOf(expenseValue);
+			double value = Double.valueOf(expenseValue);
+			return value>=0;
 		} catch (Exception e) {
 			return false;
 		}
-		return true;
 	}
 
 	public static Border createTitledBorder(String label) {

@@ -1,4 +1,4 @@
-package com.financial.analisys.financial_gui.view;
+package com.financial.analisys.financialGui.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,8 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import com.financial.analisys.financial_gui.controller.Controller;
-import com.financial.analisys.financial_gui.util.GUIUtils;
+import com.financial.analisys.financialGui.controller.Controller;
+import com.financial.analisys.financialGui.util.GUIUtils;
 
 public class CategoriesDialog extends JDialog {
 

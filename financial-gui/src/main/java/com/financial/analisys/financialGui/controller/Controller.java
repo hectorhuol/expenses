@@ -1,4 +1,4 @@
-package com.financial.analisys.financial_gui.controller;
+package com.financial.analisys.financialGui.controller;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,11 +18,11 @@ import com.financial.analisys.expenses.managers.CategoriesManager;
 import com.financial.analisys.expenses.managers.ExpensesManager;
 import com.financial.analisys.expenses.managers.UsersManager;
 import com.financial.analisys.expenses.utils.FinancialUtils;
-import com.financial.analisys.financial_gui.dto.DayExpenses;
-import com.financial.analisys.financial_gui.dto.MonthExpenses;
-import com.financial.analisys.financial_gui.dto.GuiData;
-import com.financial.analisys.financial_gui.view.ExpensesDialog;
-import com.financial.analisys.financial_gui.view.FinancialGUI;
+import com.financial.analisys.financialGui.dto.DayExpenses;
+import com.financial.analisys.financialGui.dto.GuiData;
+import com.financial.analisys.financialGui.dto.MonthExpenses;
+import com.financial.analisys.financialGui.view.ExpensesDialog;
+import com.financial.analisys.financialGui.view.FinancialGUI;
 
 public class Controller {
 

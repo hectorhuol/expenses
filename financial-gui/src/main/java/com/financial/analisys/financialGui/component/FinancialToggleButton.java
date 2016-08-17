@@ -1,4 +1,4 @@
-package com.financial.analisys.financial_gui.component;
+package com.financial.analisys.financialGui.component;
 
 import javax.swing.JToggleButton;
 

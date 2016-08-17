@@ -1,4 +1,4 @@
-package com.financial.analisys.financial_gui.dto;
+package com.financial.analisys.financialGui.dto;
 
 public class DayExpenses {
 	

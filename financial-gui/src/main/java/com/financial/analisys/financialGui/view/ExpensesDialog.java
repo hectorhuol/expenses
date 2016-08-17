@@ -1,4 +1,4 @@
-package com.financial.analisys.financial_gui.view;
+package com.financial.analisys.financialGui.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -24,9 +24,9 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.SwingUtilities;
 
-import com.financial.analisys.financial_gui.component.FinancialToggleButton;
-import com.financial.analisys.financial_gui.controller.Controller;
-import com.financial.analisys.financial_gui.util.GUIUtils;
+import com.financial.analisys.financialGui.component.FinancialToggleButton;
+import com.financial.analisys.financialGui.controller.Controller;
+import com.financial.analisys.financialGui.util.GUIUtils;
 import com.toedter.calendar.JDateChooser;
 
 public class ExpensesDialog extends JDialog {
